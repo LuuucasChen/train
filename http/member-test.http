@@ -5,3 +5,7 @@ Accept: application/json
 GET http://localhost:8008/member/hello
 Accept: application/json
 ###
+
+GET http://localhost:8008/member/member/count
+Accept: application/json
+###
