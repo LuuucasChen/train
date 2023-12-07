@@ -1,4 +1,4 @@
-package com.lucas.train.member.aspect;
+package com.lucas.common.aspect;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
