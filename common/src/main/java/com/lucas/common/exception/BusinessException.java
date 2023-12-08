@@ -14,4 +14,13 @@ public class BusinessException extends RuntimeException {
     public void setE(BusinessExceptionEnum e) {
         this.e = e;
     }
+
+    /**
+     * 不写入堆栈信息
+     */
+    @Override
+    public Throwable fillInStackTrace() {
+        return this;
+    }
+
 }
