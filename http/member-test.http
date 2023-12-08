@@ -9,3 +9,7 @@ Accept: application/json
 GET http://localhost:8008/member/member/count
 Accept: application/json
 ###
+
+POST http://localhost:8008/member/member/register?mobile=18845878706
+Accept: application/json
+###
