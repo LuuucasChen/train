@@ -3,6 +3,7 @@ package com.lucas.train.member.service;
 import cn.hutool.core.collection.CollUtil;
 import com.lucas.common.exception.BusinessException;
 import com.lucas.common.exception.BusinessExceptionEnum;
+import com.lucas.common.util.SnowUtil;
 import com.lucas.train.member.domain.Member;
 import com.lucas.train.member.domain.MemberExample;
 import com.lucas.train.member.mapper.MemberMapper;
@@ -33,7 +34,7 @@ public class MemberService {
         }
 
         Member member = new Member();
-        member.setId(System.currentTimeMillis());
+        member.setId(SnowUtil.getSnowflakeNextId());
         member.setMobile(mobile);
 
         memberMapper.insert(member);
