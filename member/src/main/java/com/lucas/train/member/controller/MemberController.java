@@ -1,7 +1,10 @@
 package com.lucas.train.member.controller;
 
 import com.lucas.common.resp.CommonResp;
+import com.lucas.train.member.req.MemberLoginReq;
 import com.lucas.train.member.req.MemberRegisterReq;
+import com.lucas.train.member.req.MemberSendCodeReq;
+import com.lucas.train.member.resp.MemberLoginResp;
 import com.lucas.train.member.service.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +33,17 @@ public class MemberController {
         CommonResp<Long> commonResp = new CommonResp<>();
         commonResp.setContent(id);
         return commonResp;
+    }
+
+    @PostMapping("/send-code")
+    public CommonResp<Long> sendCode(@Valid MemberSendCodeReq req) {
+        memberService.sendCode(req);
+        return new CommonResp<>();
+    }
+
+    @PostMapping("/login")
+    public CommonResp<MemberLoginResp> login(@Valid MemberLoginReq req) {
+        MemberLoginResp memberLoginResp =  memberService.login(req);
+        return new CommonResp<>(memberLoginResp);
     }
 }

@@ -15,3 +15,21 @@ Content-Type: application/x-www-form-urlencoded
 
 mobile=18845878711
 ###
+
+POST http://localhost:8008/member/member/send-code
+Content-Type: application/x-www-form-urlencoded
+
+mobile=13000000001
+###
+
+POST http://localhost:8008/member/member/send-code
+Content-Type: application/x-www-form-urlencoded
+
+mobile=13000000001
+###
+
+POST http://localhost:8008/member/member/login
+Content-Type: application/x-www-form-urlencoded
+
+mobile=13000000001&code=1234
+###
