@@ -4,7 +4,6 @@ Content-Type: application/json
 {
   "memberId":"1",
   "name":"test",
-  "idCard":"1",
-  "type": "1"
+  "idCard":"1"
 }
 ###
