@@ -1,5 +1,6 @@
 package com.lucas.train.member.service;
 
+import com.lucas.common.context.MemberLoginContext;
 import com.lucas.common.util.SnowUtil;
 import com.lucas.train.member.domain.Passenger;
 import com.lucas.train.member.mapper.PassengerMapper;
@@ -22,7 +23,7 @@ public class PassengerService {
         passenger.setCreateTime(date);
         passenger.setUpdateTime(date);
 
-        passenger.setMemberId(req.getMemberId());
+        passenger.setMemberId(MemberLoginContext.getId());
         passenger.setName(req.getName());
         passenger.setIdCard(req.getIdCard());
         passenger.setType(req.getType());
