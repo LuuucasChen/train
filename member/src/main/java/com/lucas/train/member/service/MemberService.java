@@ -3,6 +3,7 @@ package com.lucas.train.member.service;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.lucas.common.exception.BusinessException;
 import com.lucas.common.exception.BusinessExceptionEnum;
 import com.lucas.common.util.SnowUtil;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -86,6 +88,16 @@ public class MemberService {
         MemberLoginResp memberLoginResp = new MemberLoginResp();
         memberLoginResp.setId(memberDB.getId());
         memberLoginResp.setMobile(memberDB.getMobile());
+
+        //生成payload Map
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", memberDB.getId());
+        map.put("mobile", memberDB.getMobile());
+
+        //插入token
+        String key = "lucas12306";
+        String token = JWTUtil.createToken(map, key.getBytes());
+        memberLoginResp.setToken(token);
         return memberLoginResp;
     }
 
