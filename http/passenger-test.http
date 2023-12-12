@@ -1,10 +1,17 @@
 POST http://localhost:8008/member/passenger/save
 Content-Type: application/json
-token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MDIzOTAwMDQsIm1vYmlsZSI6IjEzMDAwMDAwMDAxIiwiaWQiOjE3MzQyMDA3NjMyNjcyODkwODgsImV4cCI6MTcwMjQ3NjQwNCwiaWF0IjoxNzAyMzkwMDA0fQ.4C8x5AmpU-4VIWv2tHzq5EC8MFBJfzwNmskffpGtmrw
+token:{{token}}
 
 {
   "name":"test",
-  "idCard":"3",
+  "idCard":"6",
   "type": "1"
 }
+
+###
+
+GET http://localhost:8008/member/passenger/query-list
+Accept: application/json
+token: {{token}}
+
 ###
