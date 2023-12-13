@@ -1,12 +1,12 @@
-package com.lucas.train.member.controller;
+package com.lucas.train.${module}.controller;
 
 import com.lucas.common.context.MemberLoginContext;
 import com.lucas.common.resp.CommonResp;
 import com.lucas.common.resp.PageResp;
-import com.lucas.train.member.req.${Domain}QueryReq;
-import com.lucas.train.member.req.${Domain}SaveReq;
-import com.lucas.train.member.resp.${Domain}QueryResp;
-import com.lucas.train.member.service.${Domain}Service;
+import com.lucas.train.${module}.req.${Domain}QueryReq;
+import com.lucas.train.${module}.req.${Domain}SaveReq;
+import com.lucas.train.${module}.resp.${Domain}QueryResp;
+import com.lucas.train.${module}.service.${Domain}Service;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
