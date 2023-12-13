@@ -3,8 +3,8 @@ Content-Type: application/json
 token:{{token}}
 
 {
-  "name":"test",
-  "idCard":"6",
+  "name":"lucas",
+  "idCard":"123456789",
   "type": "1"
 }
 
@@ -13,5 +13,18 @@ token:{{token}}
 GET http://localhost:8008/member/passenger/query-list?page=1&size=4
 Accept: application/json
 token: {{token}}
+
+###
+
+POST http://localhost:8008/member/passenger/save
+Content-Type: application/json
+token:{{token}}
+
+{
+  "id": 1734853326027231232,
+  "name":"lucas1",
+  "idCard":"987654321",
+  "type": "1"
+}
 
 ###

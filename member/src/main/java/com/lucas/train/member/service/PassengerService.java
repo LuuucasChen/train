@@ -28,15 +28,26 @@ public class PassengerService {
     public void save(PassengerSaveReq req) {
         Date date = new Date();
         Passenger passenger = new Passenger();
-        passenger.setId(SnowUtil.getSnowflakeNextId());
-        passenger.setCreateTime(date);
-        passenger.setUpdateTime(date);
-
-        passenger.setMemberId(MemberLoginContext.getId());
-        passenger.setName(req.getName());
-        passenger.setIdCard(req.getIdCard());
-        passenger.setType(req.getType());
-        passengerMapper.insert(passenger);
+        if (ObjectUtil.isNull(req.getId())) {
+            //新增乘车人
+            passenger.setId(SnowUtil.getSnowflakeNextId());
+            passenger.setCreateTime(date);
+            passenger.setUpdateTime(date);
+            passenger.setMemberId(MemberLoginContext.getId());
+            passenger.setName(req.getName());
+            passenger.setIdCard(req.getIdCard());
+            passenger.setType(req.getType());
+            passengerMapper.insert(passenger);
+        } else {
+            //更新乘车人
+            passenger.setId(req.getId());
+            passenger.setMemberId(MemberLoginContext.getId());
+            passenger.setUpdateTime(date);
+            passenger.setName(req.getName());
+            passenger.setIdCard(req.getIdCard());
+            passenger.setType(req.getType());
+            passengerMapper.updateByPrimaryKeySelective(passenger);
+        }
     }
 
     public PageResp<PassengerQueryResp> queryList(PassengerQueryReq req) {
