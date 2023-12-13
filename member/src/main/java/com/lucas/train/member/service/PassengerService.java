@@ -2,7 +2,10 @@ package com.lucas.train.member.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lucas.common.context.MemberLoginContext;
+import com.lucas.common.resp.PageResp;
 import com.lucas.common.util.SnowUtil;
 import com.lucas.train.member.domain.Passenger;
 import com.lucas.train.member.domain.PassengerExample;
@@ -36,14 +39,22 @@ public class PassengerService {
         passengerMapper.insert(passenger);
     }
 
-    public List<PassengerQueryResp> queryList(PassengerQueryReq req) {
+    public PageResp<PassengerQueryResp> queryList(PassengerQueryReq req) {
         PassengerExample passenger = new PassengerExample();
         PassengerExample.Criteria criteria = passenger.createCriteria();
         if (ObjectUtil.isNotNull(req.getMemberId())) {
             criteria.andMemberIdEqualTo(req.getMemberId());
         }
+        PageHelper.startPage(req.getPage(), req.getSize());
         List<Passenger> passengers = passengerMapper.selectByExample(passenger);
         List<PassengerQueryResp> passengerQueryList = BeanUtil.copyToList(passengers, PassengerQueryResp.class);
-        return passengerQueryList;
+
+        PageResp<PassengerQueryResp> resp = new PageResp<>();
+        resp.setList(passengerQueryList);
+
+        PageInfo<Passenger> pageInfo = new PageInfo<>(passengers);
+        resp.setTotal(pageInfo.getTotal());
+
+        return resp;
     }
 }
