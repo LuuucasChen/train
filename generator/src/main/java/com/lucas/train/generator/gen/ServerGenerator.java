@@ -15,7 +15,7 @@ import java.util.*;
 
 public class ServerGenerator {
     static boolean readOnly = false;
-    static String vuePath = "web/src/views/main/";
+    static String vuePath = "admin/src/views/main/";
     static String serverPath = "[module]/src/main/java/com/lucas/train/[module]/";
     static String pomPath = "generator\\pom.xml";
     static {
@@ -78,6 +78,8 @@ public class ServerGenerator {
         gen(Domain, param, "service","service");
         gen(Domain, param, "controller","controller");
         gen(Domain, param, "req","saveReq");
+        gen(Domain, param, "req", "queryReq");
+        gen(Domain, param, "resp", "queryResp");
         genVue(do_main, param);
 
     }
