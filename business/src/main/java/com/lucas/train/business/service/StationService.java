@@ -13,9 +13,7 @@ import com.lucas.train.business.mapper.StationMapper;
 import com.lucas.train.business.req.StationQueryReq;
 import com.lucas.train.business.req.StationSaveReq;
 import com.lucas.train.business.resp.StationQueryResp;
-import jakarta.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,9 +21,7 @@ import java.util.List;
 @Service
 public class StationService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StationService.class);
-
-    @Resource
+    @Autowired
     private StationMapper stationMapper;
 
     public void save(StationSaveReq req) {
@@ -43,28 +39,25 @@ public class StationService {
     }
 
     public PageResp<StationQueryResp> queryList(StationQueryReq req) {
-        StationExample stationExample = new StationExample();
-        stationExample.setOrderByClause("id desc");
-        StationExample.Criteria criteria = stationExample.createCriteria();
+        StationExample station = new StationExample();
+        station.setOrderByClause("id desc");
+        StationExample.Criteria criteria = station.createCriteria();
 
-        LOG.info("查询页码：{}", req.getPage());
-        LOG.info("每页条数：{}", req.getSize());
         PageHelper.startPage(req.getPage(), req.getSize());
-        List<Station> stationList = stationMapper.selectByExample(stationExample);
+        List<Station> stations = stationMapper.selectByExample(station);
+        List<StationQueryResp> stationQueryList = BeanUtil.copyToList(stations, StationQueryResp.class);
 
-        PageInfo<Station> pageInfo = new PageInfo<>(stationList);
-        LOG.info("总行数：{}", pageInfo.getTotal());
-        LOG.info("总页数：{}", pageInfo.getPages());
+        PageResp<StationQueryResp> resp = new PageResp<>();
+        resp.setList(stationQueryList);
 
-        List<StationQueryResp> list = BeanUtil.copyToList(stationList, StationQueryResp.class);
+        PageInfo<Station> pageInfo = new PageInfo<>(stations);
+        resp.setTotal(pageInfo.getTotal());
 
-        PageResp<StationQueryResp> pageResp = new PageResp<>();
-        pageResp.setTotal(pageInfo.getTotal());
-        pageResp.setList(list);
-        return pageResp;
+        return resp;
     }
 
     public void delete(Long id) {
         stationMapper.deleteByPrimaryKey(id);
     }
+
 }

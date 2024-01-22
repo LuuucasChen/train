@@ -2,9 +2,12 @@ package com.lucas.train.business.mapper;
 
 import com.lucas.train.business.domain.Station;
 import com.lucas.train.business.domain.StationExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface StationMapper {
     long countByExample(StationExample example);
 
