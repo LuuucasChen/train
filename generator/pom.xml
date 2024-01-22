@@ -49,7 +49,7 @@
         </dependency>
         <dependency>
             <groupId>com.lucas</groupId>
-            <artifactId>member</artifactId>
+            <artifactId>business</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

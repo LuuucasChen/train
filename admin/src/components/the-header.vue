@@ -1,9 +1,18 @@
 <template>
-  <a-layout-sider width="200" style="background: #fff">
+  <a-layout-header class="header">
+    <div class="logo">
+      <router-link to="/welcome" style="color: white; font-size: 18px">
+        甲蛙12306控台
+      </router-link>
+    </div>
+    <div style="float: right; color: white;">
+      欢迎使用管理控台
+    </div>
     <a-menu
         v-model:selectedKeys="selectedKeys"
-        mode="inline"
-        :style="{ height: '100%', borderRight: 0 }"
+        theme="dark"
+        mode="horizontal"
+        :style="{ lineHeight: '64px' }"
     >
       <a-menu-item key="/welcome">
         <router-link to="/welcome">
@@ -15,21 +24,16 @@
           <user-outlined /> &nbsp; 关于
         </router-link>
       </a-menu-item>
-      <a-menu-item key="/station">
-        <router-link to="/station">
-          <user-outlined /> &nbsp; 车站管理
-        </router-link>
-      </a-menu-item>
     </a-menu>
-  </a-layout-sider>
+  </a-layout-header>
 </template>
 
 <script>
 import {defineComponent, ref, watch} from 'vue';
-import router from "@/router";
+import router from '@/router'
 
 export default defineComponent({
-  name: "the-sider-view",
+  name: "the-header-view",
   setup() {
     const selectedKeys = ref([]);
 
@@ -47,5 +51,11 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.logo {
+  float: left;
+  height: 31px;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+}
 </style>
