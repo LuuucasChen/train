@@ -1,10 +1,9 @@
 package com.lucas.train.business.resp;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class TrainQueryResp {
 
@@ -37,7 +36,8 @@ public class TrainQueryResp {
     /**
      * 出发时间
      */
-    private String startTime;
+    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
+    private Date startTime;
 
     /**
      * 终点站
@@ -52,7 +52,8 @@ public class TrainQueryResp {
     /**
      * 到站时间
      */
-    private String endTime;
+    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
+    private Date endTime;
 
     /**
      * 新增时间
@@ -106,11 +107,11 @@ public class TrainQueryResp {
         this.startPinyin = startPinyin;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
@@ -130,11 +131,11 @@ public class TrainQueryResp {
         this.endPinyin = endPinyin;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 

@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DbUtil {
+
     public static String url = "";
     public static String user = "";
     public static String password = "";
@@ -145,6 +146,10 @@ public class DbUtil {
                 || sqlType.toUpperCase().contains("text".toUpperCase())) {
             return "String";
         } else if (sqlType.toUpperCase().contains("datetime".toUpperCase())) {
+            return "Date";
+        } else if (sqlType.toUpperCase().contains("time".toUpperCase())) {
+            return "Date";
+        } else if (sqlType.toUpperCase().contains("date".toUpperCase())) {
             return "Date";
         } else if (sqlType.toUpperCase().contains("bigint".toUpperCase())) {
             return "Long";
