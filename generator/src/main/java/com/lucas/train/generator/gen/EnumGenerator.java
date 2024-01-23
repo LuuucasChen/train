@@ -1,6 +1,7 @@
 package com.lucas.train.generator.gen;
 
 import cn.hutool.core.util.StrUtil;
+import com.lucas.train.business.enmus.SeatColEnum;
 import com.lucas.train.business.enmus.SeatTypeEnum;
 import com.lucas.train.business.enmus.TrainTypeEnum;
 import com.lucas.train.member.enums.PassengerTypeEnum;
@@ -20,6 +21,7 @@ public class EnumGenerator {
             toJson(PassengerTypeEnum.class, bufferObject, bufferArray);
             toJson(TrainTypeEnum.class, bufferObject, bufferArray);
             toJson(SeatTypeEnum.class, bufferObject, bufferArray);
+            toJson(SeatColEnum.class, bufferObject, bufferArray);
 
             StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
             writeJs(buffer);
