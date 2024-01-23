@@ -56,6 +56,15 @@ public class TrainService {
         return resp;
     }
 
+    public List<TrainQueryResp> queryAll() {
+        TrainExample train = new TrainExample();
+        train.setOrderByClause("id desc");
+        List<Train> trains = trainMapper.selectByExample(train);
+        List<TrainQueryResp> trainQueryList = BeanUtil.copyToList(trains, TrainQueryResp.class);
+
+        return trainQueryList;
+    }
+
     public void delete(Long id) {
         trainMapper.deleteByPrimaryKey(id);
     }
