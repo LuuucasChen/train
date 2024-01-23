@@ -19,7 +19,7 @@ public class Train_carriageQueryResp {
     private String trainCode;
 
     /**
-     * 箱号
+     * 厢号
      */
     private Integer index;
 
@@ -41,7 +41,7 @@ public class Train_carriageQueryResp {
     /**
      * 列数
      */
-    private Integer columnCount;
+    private Integer colCount;
 
     /**
      * 新增时间
@@ -103,12 +103,12 @@ public class Train_carriageQueryResp {
         this.rowCount = rowCount;
     }
 
-    public Integer getColumnCount() {
-        return columnCount;
+    public Integer getColCount() {
+        return colCount;
     }
 
-    public void setColumnCount(Integer columnCount) {
-        this.columnCount = columnCount;
+    public void setColCount(Integer colCount) {
+        this.colCount = colCount;
     }
 
     public Date getCreateTime() {
@@ -139,7 +139,7 @@ public class Train_carriageQueryResp {
         sb.append(", seatType=").append(seatType);
         sb.append(", seatCount=").append(seatCount);
         sb.append(", rowCount=").append(rowCount);
-        sb.append(", columnCount=").append(columnCount);
+        sb.append(", colCount=").append(colCount);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");
