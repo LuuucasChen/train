@@ -6,8 +6,8 @@ import com.lucas.train.business.req.TrainQueryReq;
 import com.lucas.train.business.req.TrainSaveReq;
 import com.lucas.train.business.resp.StationQueryResp;
 import com.lucas.train.business.resp.TrainQueryResp;
+import com.lucas.train.business.service.TrainSeatService;
 import com.lucas.train.business.service.TrainService;
-import com.lucas.train.business.service.Train_seatService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class TrainAdminController {
     @Autowired
     private TrainService trainService;
     @Autowired
-    private Train_seatService trainSeatService;
+    private TrainSeatService trainSeatService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResp<Object> save(@Valid @RequestBody TrainSaveReq req) {

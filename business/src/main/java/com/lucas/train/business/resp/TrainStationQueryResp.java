@@ -1,41 +1,37 @@
-package com.lucas.train.business.req;
+package com.lucas.train.business.resp;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-public class Train_stationSaveReq {
+public class TrainStationQueryResp {
 
     /**
      * id
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**
      * 车次编号
      */
-    @NotBlank(message = "【车次编号】不能为空")
     private String trainCode;
 
     /**
      * 站序
      */
-    @NotNull(message = "【站序】不能为空")
     private Integer index;
 
     /**
      * 站名
      */
-    @NotBlank(message = "【站名】不能为空")
     private String name;
 
     /**
      * 站名拼音
      */
-    @NotBlank(message = "【站名拼音】不能为空")
     private String namePinyin;
 
     /**
@@ -59,7 +55,6 @@ public class Train_stationSaveReq {
     /**
      * 里程（公里）|从上一站到本站的距离
      */
-    @NotNull(message = "【里程（公里）】不能为空")
     private BigDecimal km;
 
     /**

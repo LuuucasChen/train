@@ -6,7 +6,7 @@
       <a-button type="primary" @click="onAdd">新增</a-button>
     </a-space>
   </p>
-  <a-table :dataSource="train_stations"
+  <a-table :dataSource="trainStations"
            :columns="columns"
            :pagination="pagination"
            @change="handleTableChange"
@@ -47,7 +47,7 @@
         <a-time-picker v-model:value="trainStation.outTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
       </a-form-item>
       <a-form-item label="停站时长">
-        <a-time-picker v-model:value="trainStation.stopTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
+        <a-time-picker v-model:value="trainStation.stopTime" valueFormat="HH:mm:ss" placeholder="请选择时间" disabled/>
       </a-form-item>
       <a-form-item label="里程（公里）">
         <a-input v-model:value="trainStation.km" />
@@ -63,6 +63,7 @@ import axios from "axios";
 import {pinyin} from "pinyin-pro";
 import TrainSelectView from "@/components/train-select";
 import StationSelectView from "@/components/station-select";
+import dayjs from 'dayjs';
 
 export default defineComponent({
   name: "train-station-view",
@@ -82,7 +83,7 @@ export default defineComponent({
       createTime: undefined,
       updateTime: undefined,
     });
-    const train_stations = ref([]);
+    const trainStations = ref([]);
     // 分页的三个属性名是固定的
     const pagination = ref({
       total: 0,
@@ -147,6 +148,18 @@ export default defineComponent({
       }
     }, {immediate: true});
 
+    // 自动计算停车时长
+    watch(() => trainStation.value.inTime, ()=>{
+      let diff = dayjs(trainStation.value.outTime, 'HH:mm:ss').diff(dayjs(trainStation.value.inTime, 'HH:mm:ss'), 'seconds');
+      trainStation.value.stopTime = dayjs('00:00:00', 'HH:mm:ss').second(diff).format('HH:mm:ss');
+    }, {immediate: true});
+
+    // 自动计算停车时长
+    watch(() => trainStation.value.outTime, ()=>{
+      let diff = dayjs(trainStation.value.outTime, 'HH:mm:ss').diff(dayjs(trainStation.value.inTime, 'HH:mm:ss'), 'seconds');
+      trainStation.value.stopTime = dayjs('00:00:00', 'HH:mm:ss').second(diff).format('HH:mm:ss');
+    }, {immediate: true});
+
     const onAdd = () => {
       trainStation.value = {};
       visible.value = true;
@@ -206,7 +219,7 @@ export default defineComponent({
         loading.value = false;
         let data = response.data;
         if (data.success) {
-          train_stations.value = data.content.list;
+          trainStations.value = data.content.list;
           // 设置分页控件的值
           pagination.value.current = param.page;
           pagination.value.total = data.content.total;
@@ -234,7 +247,7 @@ export default defineComponent({
     return {
       trainStation,
       visible,
-      train_stations,
+      trainStations,
       pagination,
       columns,
       handleTableChange,

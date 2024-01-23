@@ -2,7 +2,7 @@ package com.lucas.train.business.domain;
 
 import java.util.Date;
 
-public class Train_carriage {
+public class TrainCarriage {
     private Long id;
 
     private String trainCode;

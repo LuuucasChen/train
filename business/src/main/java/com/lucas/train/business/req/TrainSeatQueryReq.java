@@ -2,7 +2,7 @@ package com.lucas.train.business.req;
 
 import com.lucas.common.req.PageReq;
 
-public class Train_stationQueryReq extends PageReq {
+public class TrainSeatQueryReq extends PageReq {
 
     private String trainCode;
 
@@ -16,8 +16,9 @@ public class Train_stationQueryReq extends PageReq {
 
     @Override
     public String toString() {
-        return "Train_stationQueryReq{" +
+        return "Train_seatQueryReq{" +
                 "trainCode='" + trainCode + '\'' +
                 "} " + super.toString();
     }
+
 }

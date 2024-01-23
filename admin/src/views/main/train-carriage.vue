@@ -6,7 +6,7 @@
       <a-button type="primary" @click="onAdd">新增</a-button>
     </a-space>
   </p>
-  <a-table :dataSource="train_carriages"
+  <a-table :dataSource="trainCarriages"
            :columns="columns"
            :pagination="pagination"
            @change="handleTableChange"
@@ -48,15 +48,15 @@
           </a-select-option>
         </a-select>
       </a-form-item>
-      <a-form-item label="座位数">
-        <a-input v-model:value="trainCarriage.seatCount" />
-      </a-form-item>
+      <!--<a-form-item label="座位数">-->
+      <!--  <a-input v-model:value="trainCarriage.seatCount" />-->
+      <!--</a-form-item>-->
       <a-form-item label="排数">
         <a-input v-model:value="trainCarriage.rowCount" />
       </a-form-item>
-      <a-form-item label="列数">
-        <a-input v-model:value="trainCarriage.colCount" />
-      </a-form-item>
+      <!--<a-form-item label="列数">-->
+      <!--  <a-input v-model:value="trainCarriage.colCount" />-->
+      <!--</a-form-item>-->
     </a-form>
   </a-modal>
 </template>
@@ -84,7 +84,7 @@ export default defineComponent({
       createTime: undefined,
       updateTime: undefined,
     });
-    const train_carriages = ref([]);
+    const trainCarriages = ref([]);
     // 分页的三个属性名是固定的
     const pagination = ref({
       total: 0,
@@ -191,7 +191,7 @@ export default defineComponent({
         loading.value = false;
         let data = response.data;
         if (data.success) {
-          train_carriages.value = data.content.list;
+          trainCarriages.value = data.content.list;
           // 设置分页控件的值
           pagination.value.current = param.page;
           pagination.value.total = data.content.total;
@@ -220,7 +220,7 @@ export default defineComponent({
       SEAT_TYPE_ARRAY,
       trainCarriage,
       visible,
-      train_carriages,
+      trainCarriages,
       pagination,
       columns,
       handleTableChange,
