@@ -8,3 +8,8 @@ Accept: application/json
 
 ###
 
+GET http://localhost:8008/business/admin/train/gen-seat/G1
+Accept: application/json
+
+###
+

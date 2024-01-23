@@ -4,8 +4,10 @@ import com.lucas.common.resp.CommonResp;
 import com.lucas.common.resp.PageResp;
 import com.lucas.train.business.req.TrainQueryReq;
 import com.lucas.train.business.req.TrainSaveReq;
+import com.lucas.train.business.resp.StationQueryResp;
 import com.lucas.train.business.resp.TrainQueryResp;
 import com.lucas.train.business.service.TrainService;
+import com.lucas.train.business.service.Train_seatService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import java.util.List;
 public class TrainAdminController {
     @Autowired
     private TrainService trainService;
+    @Autowired
+    private Train_seatService trainSeatService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public CommonResp<Object> save(@Valid @RequestBody TrainSaveReq req) {
@@ -39,6 +43,12 @@ public class TrainAdminController {
     public CommonResp<List<TrainQueryResp>> queryList() {
         List<TrainQueryResp> trainQueryList = trainService.queryAll();
         return new CommonResp<>(trainQueryList);
+    }
+
+    @GetMapping("/gen-seat/{trainCode}")
+    public CommonResp<List<StationQueryResp>> genSeat(@PathVariable String trainCode) {
+        trainSeatService.genTrainSeat(trainCode);
+        return new CommonResp<>();
     }
 
 }

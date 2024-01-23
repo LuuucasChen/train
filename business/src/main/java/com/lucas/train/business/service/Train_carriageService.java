@@ -64,4 +64,13 @@ public class Train_carriageService {
         train_carriageMapper.deleteByPrimaryKey(id);
     }
 
+    public List<Train_carriage> selectByTrainCode(String trainCode) {
+        Train_carriageExample train_carriage = new Train_carriageExample();
+        train_carriage.setOrderByClause("`index` asc");
+        Train_carriageExample.Criteria criteria = train_carriage.createCriteria();
+        criteria.andTrainCodeEqualTo(trainCode);
+        List<Train_carriage> train_carriages = train_carriageMapper.selectByExample(train_carriage);
+        return train_carriages;
+    }
+
 }
