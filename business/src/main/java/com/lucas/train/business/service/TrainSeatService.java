@@ -18,6 +18,7 @@ import com.lucas.train.business.req.TrainSeatSaveReq;
 import com.lucas.train.business.resp.TrainSeatQueryResp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -70,6 +71,7 @@ public class TrainSeatService {
         train_seatMapper.deleteByPrimaryKey(id);
     }
 
+    @Transactional
     public void genTrainSeat(String trainCode) {
         DateTime now = DateTime.now();
         //清空所有座位记录
