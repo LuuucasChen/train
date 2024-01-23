@@ -40,8 +40,12 @@ public class Train_carriageService {
 
     public PageResp<Train_carriageQueryResp> queryList(Train_carriageQueryReq req) {
         Train_carriageExample train_carriage = new Train_carriageExample();
-        train_carriage.setOrderByClause("id desc");
+        train_carriage.setOrderByClause("train_code asc, `index` asc");
         Train_carriageExample.Criteria criteria = train_carriage.createCriteria();
+
+        if (ObjectUtil.isNotEmpty(req.getTrainCode())) {
+            criteria.andTrainCodeEqualTo(req.getTrainCode());
+        }
 
         PageHelper.startPage(req.getPage(), req.getSize());
         List<Train_carriage> train_carriages = train_carriageMapper.selectByExample(train_carriage);

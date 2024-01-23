@@ -40,8 +40,12 @@ public class Train_stationService {
 
     public PageResp<Train_stationQueryResp> queryList(Train_stationQueryReq req) {
         Train_stationExample train_station = new Train_stationExample();
-        train_station.setOrderByClause("id desc");
+        train_station.setOrderByClause("train_code asc, `index` asc");
         Train_stationExample.Criteria criteria = train_station.createCriteria();
+
+        if (ObjectUtil.isNotEmpty(req.getTrainCode())) {
+            criteria.andTrainCodeEqualTo(req.getTrainCode());
+        }
 
         PageHelper.startPage(req.getPage(), req.getSize());
         List<Train_station> train_stations = train_stationMapper.selectByExample(train_station);
