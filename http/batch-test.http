@@ -2,14 +2,12 @@ GET http://localhost:8008/batch/hello
 Accept: application/json
 
 ###
-POST http://localhost:8008/batch/admin/job/add
+POST http://localhost:8008/batch/admin/job/run
 Content-Type: application/json
 
 {
-  "name": "com.lucas.train.batch.job.QuartzTestJob",
-  "jobGroupName": "default",
-  "cronExpression": "*/2 * * * * ?",
-  "desc": "test job"
+  "name": "com.lucas.train.batch.job.DailyTrainJob",
+  "jobGroupName": "default"
 }
 
 ###
