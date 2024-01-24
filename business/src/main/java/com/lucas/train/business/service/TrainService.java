@@ -60,7 +60,7 @@ public class TrainService {
 
     public PageResp<TrainQueryResp> queryList(TrainQueryReq req) {
         TrainExample train = new TrainExample();
-        train.setOrderByClause("id desc");
+        train.setOrderByClause("code asc");
         TrainExample.Criteria criteria = train.createCriteria();
 
         PageHelper.startPage(req.getPage(), req.getSize());
