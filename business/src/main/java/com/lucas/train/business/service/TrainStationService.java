@@ -77,6 +77,15 @@ public class TrainStationService {
         }
     }
 
+    public  List<TrainStation> selectByTrainCode(String trainCode) {
+        TrainStationExample trainStationExample = new TrainStationExample();
+        trainStationExample.setOrderByClause("train_code asc, `index` asc");
+        trainStationExample.createCriteria()
+                .andTrainCodeEqualTo(trainCode);
+        List<TrainStation> list = train_stationMapper.selectByExample(trainStationExample);
+        return list;
+    }
+
     public PageResp<TrainStationQueryResp> queryList(TrainStationQueryReq req) {
         TrainStationExample train_station = new TrainStationExample();
         train_station.setOrderByClause("train_code asc, `index` asc");
